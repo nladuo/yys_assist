@@ -29,12 +29,14 @@ def check_scene(img_file, scene_name):
 
 if __name__ == "__main__":
     # 导出资源
-    crop_screenshot("raw/接受邀请.png", 125, 240, 35, 35, "assets/接受邀请.png")
-    crop_screenshot("raw/接受邀请2.png", 125, 353, 35, 35, "assets/接受邀请2.png")
-    crop_screenshot("raw/自动接受邀请.png", 219, 240, 35, 35, "assets/自动接受邀请.png")
-    crop_screenshot("raw/战斗中.png", 469, 693, 8, 15, "assets/战斗中.png")
-    crop_screenshot("raw/战斗胜利.png", 440, 120, 40, 40, "assets/战斗胜利.png")
-    crop_screenshot("raw/战斗失败.png", 440, 120, 40, 40, "assets/战斗失败.png")
+    # crop_screenshot("raw/接受邀请.png", 125, 240, 35, 35, "assets/接受邀请.png")
+    # crop_screenshot("raw/接受邀请2.png", 125, 353, 35, 35, "assets/接受邀请2.png")
+    # crop_screenshot("raw/自动接受邀请.png", 219, 240, 35, 35, "assets/自动接受邀请.png")
+    # crop_screenshot("raw/战斗中.png", 469, 693, 8, 15, "assets/战斗中.png")
+    # crop_screenshot("raw/战斗胜利.png", 440, 120, 40, 40, "assets/战斗胜利.png")
+    # crop_screenshot("raw/战斗失败.png", 440, 120, 40, 40, "assets/战斗失败.png")
+    # crop_screenshot("raw/点击任意继续.png", 569, 434, 20, 20, "assets/点击任意继续.png")
+    crop_screenshot("raw/确认接收邀请.png", 485, 280, 50, 20, "assets/确认接收邀请.png")
 
     # # 检查是否正确
     check_scene("raw/战斗胜利.png", "战斗失败")

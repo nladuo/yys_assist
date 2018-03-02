@@ -1,5 +1,8 @@
-# yys_assist
-基于Android ADB的一个阴阳师挂机魂10辅助(打手模式)。
+# Simple YSS Assistant
+基于Android ADB的一个阴阳师挂机魂10的脚本(打手模式)。
+
+## 状态
+开发中...
 
 ## 环境
 - 语言：python3.6
@@ -17,3 +20,9 @@
 ``` 
 python3 simple_yys_assist.py
 ```
+
+## 特别说明
+写着玩儿，目前不知道会不会收到鬼使黑的警告。
+
+## LICENSE
+GPL-3.0 

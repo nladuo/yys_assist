@@ -13,19 +13,22 @@ Regions = {
     "战斗失败": (440, 120, 440+40, 120+40),
 }
 
-Assets = {
+Assets = {    # 这块懒得优化代码了
     "接受邀请": Image.open("assets/接受邀请.png"),
     "自动接受邀请": Image.open("assets/自动接受邀请.png"),
     "战斗中": Image.open("assets/战斗中.png"),
     "战斗胜利": Image.open("assets/战斗胜利.png"),
-    "战斗失败": Image.open("assets/战斗失败.png")
+    "战斗失败": Image.open("assets/战斗失败.png"),
+    "点击任意继续": Image.open("assets/点击任意继续.png")
 }
 
 Positions = {
     "接受邀请": (235, 261),
     "自动接受邀请": (144, 261),
     "战斗胜利": (555, 78),
-    "战斗失败": (555, 78)
+    "战斗失败": (555, 78),
+    "点击任意继续": (555, 78),
+    "确认接收邀请": [(568, 370), (752, 431)]
 }
 
 
@@ -56,9 +59,11 @@ if __name__ == "__main__":
     last_scene = "无场景"  # 记录上次所在的场景
     now_scene = "无场景"  # 记录当前所在的场景
 
+    count = 0           # 记录主循环次数
+
     victor_times = 0   # 记录战斗胜利的次数
     failing_times = 0  # 记录战斗失败的次数
-    print("开始运行, 当前场景: 无场景")
+    print("Simple YSS Assistant 开始运行....")
 
     while True:
         screenshot = take_screenshot()
@@ -72,22 +77,37 @@ if __name__ == "__main__":
             now_scene = "战斗胜利"
         elif check_scene(screenshot, "战斗失败"):
             now_scene = "战斗失败"
+        elif check_scene(screenshot, "确认接收邀请"):
+            now_scene = "确认接收邀请"
+        elif check_scene(screenshot, "点击任意继续"):
+            now_scene = "点击任意继续"
         else:
             now_scene = "无场景"
 
         if now_scene != last_scene:  # 如果场景变化了.
             print("场景切换到:", now_scene)
 
-            if now_scene != "无场景" \
+            if now_scene == "确认接收邀请":
+                positions = Positions[now_scene]
+                click_point(positions[0])
+                time.sleep(1)
+                click_point(positions[1])
+            elif now_scene != "无场景" \
                     and now_scene != "战斗中" \
                     and now_scene != "组队中":
                 click_point(Positions[now_scene])
 
             if now_scene == "战斗胜利":
                 victor_times += 1
+                print("战斗胜利次数: %d, 失败次数: %d" % (victor_times, failing_times))
             elif now_scene == "战斗失败":
                 failing_times += 1
+                print("战斗胜利次数: %d, 失败次数: %d" % (victor_times, failing_times))
 
             last_scene = now_scene  # 更新上次的场景
 
-        time.sleep(0.1)
+        time.sleep(1)
+
+        count += 1
+        if count % 7 == 0:  # 隔一段时间点一下屏幕中间
+            click_point((640, 360))
