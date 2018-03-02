@@ -1,10 +1,10 @@
 # yys_assist
-基于Android adb的一个阴阳师挂机魂10辅助(打手模式)。
+基于Android ADB的一个阴阳师挂机魂10辅助(打手模式)。
 
 ## 环境
 - 语言：python3.6
-- 模拟器：网易mumu模拟器
-- 其他：Android adb工具
+- 模拟器：网易mumu模拟器(分辨率:1280x720)
+- 其他：Android ADB工具
 
 ## 使用流程
 ### 1. 确认adb 可以连接到模拟器

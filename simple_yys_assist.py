@@ -8,11 +8,10 @@ import random
 Regions = {
     "接受邀请": (125, 240, 125+35, 240+35),
     "自动接受邀请": (219, 240, 219+35, 240+35),
-    "战斗中": (1130, 58, 1130+15, 58+15),
+    "战斗中": (469, 693, 469+8, 693+15),
     "战斗胜利": (440, 120, 440+40, 120+40),
     "战斗失败": (440, 120, 440+40, 120+40),
 }
-
 
 Assets = {
     "接受邀请": Image.open("assets/接受邀请.png"),
@@ -20,6 +19,13 @@ Assets = {
     "战斗中": Image.open("assets/战斗中.png"),
     "战斗胜利": Image.open("assets/战斗胜利.png"),
     "战斗失败": Image.open("assets/战斗失败.png")
+}
+
+Positions = {
+    "接受邀请": (235, 261),
+    "自动接受邀请": (144, 261),
+    "战斗胜利": (555, 78),
+    "战斗失败": (555, 78)
 }
 
 
@@ -38,8 +44,9 @@ def take_screenshot():
     return Image.open("tmp.png")
 
 
-def click_point(x, y):
+def click_point(pos):
     """ 使用adb点击某处 """
+    x = pos[0], y = pos[1]
     x = x + random.randint(-3, 3)  # 加入随机成分, 防止鬼使黑的检测把
     y = y + random.randint(-3, 3)
     os.system("adb shell input tap {x} {y}".format(x=x, y=y))
@@ -71,26 +78,15 @@ if __name__ == "__main__":
         if now_scene != last_scene:  # 如果场景变化了.
             print("场景切换到:", now_scene)
 
-            if now_scene == "接受邀请":
-                click_point(235, 261)  # 如果是自动邀请就是
-            elif now_scene == "自动接受邀请":
-                click_point(144, 261)
+            if now_scene != "无场景" \
+                    and now_scene != "战斗中" \
+                    and now_scene != "组队中":
+                click_point(Positions[now_scene])
+
             if now_scene == "战斗胜利":
                 victor_times += 1
-                click_point(555, 78)  # 点三下
-                time.sleep(1)
-                click_point(555, 78)
-                time.sleep(1)
-                click_point(555, 78)
-                time.sleep(1)
-                click_point(555, 78)
             elif now_scene == "战斗失败":
                 failing_times += 1
-                click_point(555, 78)  # 点三下
-                time.sleep(1)
-                click_point(555, 78)
-                time.sleep(1)
-                click_point(555, 78)
 
             last_scene = now_scene  # 更新上次的场景
 
