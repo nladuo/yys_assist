@@ -2,7 +2,7 @@
 基于Android ADB的一个阴阳师挂机魂10的脚本(打手模式)。
 
 ## 状态
-开发中...
+Dead. 如果对脚本开发感兴趣，可以查看我的另一个项目[PyAndroidControl](https://github.com/nladuo/PyAndroidControl)。
 
 ## 环境
 - 语言：python3.6
